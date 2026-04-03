@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ShadowTube</title>
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ShadowTube">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <!-- CSS & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-logo"><i class="fab fa-youtube"></i></div>
+    <div class="loading-spinner"></div>
+    <div class="loading-text">SHADOWTUBE</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="main-content">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+            <div class="logo"><i class="fab fa-youtube"></i><span class="logo-text">ST</span></div>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari..." autocomplete="off">
+                <button class="search-btn" onclick="searchVideos()"><i class="fas fa-search"></i></button>
+            </div>
+            <button class="voice-btn" id="voiceBtn" onclick="startVoiceSearch()"><i class="fas fa-microphone"></i></button>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-item active" onclick="switchTab('videos')"><i class="fas fa-home"></i><span>Beranda</span></div>
+        <div class="sidebar-item" onclick="switchTab('shorts')"><i class="fas fa-fire"></i><span>Shorts</span></div>
+        <div class="sidebar-item" onclick="searchWithQuery('Music')"><i class="fas fa-music"></i><span>Music</span></div>
+        <div class="sidebar-item" onclick="searchWithQuery('Gaming')"><i class="fas fa-gamepad"></i><span>Gaming</span></div>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="main" id="main">
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="videos" onclick="switchTab('videos')">🎬 Video</div>
+            <div class="nav-tab" data-tab="shorts" onclick="switchTab('shorts')">🔥 Shorts</div>
+        </div>
+        <div class="chips-container" id="chipsContainer"></div>
+        <div id="contentArea"></div>
+    </div>
+
+    <!-- MODAL PLAYER VIDEO BIASA -->
+    <div id="normalPlayer" class="normal-player">
+        <div class="close-normal" onclick="closeNormalPlayer()"><i class="fas fa-arrow-left"></i></div>
+        <div class="normal-video"><iframe id="normalIframe" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
+        <div class="normal-info"><div id="normalTitle" class="normal-title"></div><div id="normalChannel" class="normal-channel"></div></div>
+    </div>
+
+    <!-- INSTALL BUTTON -->
+    <div id="installBtn" class="install-btn" style="display: none;"><i class="fas fa-download"></i> Install</div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="api.js"></script>
+<script src="script.js"></script>
+</body>
+  </html>
